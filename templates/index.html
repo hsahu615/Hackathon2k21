@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Himanshu</title>
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+  <div class="top-nav">
+    <div class="title">
+      <a class="titletext">CodeWarriors</a>
+    </div>
+    <ul class="top-nav-button-box">
+      <li class="topnavbutton"><a href="#" class="btn btn-primary">Hospital Info</a></li>
+      <li class="topnavbutton"><a href="#" class="btn btn-primary">Pharmacies</a></li>
+      <li class="topnavbutton"><a href="#" class="btn btn-primary">Feedback</a></li>
+      <li class="topnavbutton"><a href="#" class="btn btn-primary">About</a></li>
+    </ul>
+  </div>
+  <div class="main-page">
+    <div class="bedform">
+      <form action="/home", method="post">
+        <label for="cars">District:</label>
+        <select name="cars" id="cars">
+        </select>
+        <br><br>
+        <input type="submit" value="Submit" class="submitbutton">
+      </form>
+    </div>
+    <div class="data-container">
+      <table class="my-table" id="mytable">
+        <thead class="row-head">
+          <tr class="first-row">
+            <th rowspan="2" class="district">District</th>
+            <th rowspan="2" class="hospitalname">Hospital Name</th>
+            <th colspan="3" class="GB">General Beds</th>
+            <th colspan="3" class="OB">Oxygen Beds</th>
+            <th colspan="3" class="ICWV">ICU Beds Without ventilator</th>
+            <th colspan="3" class="ICV">ICU Beds With ventilator</th>
+            <th rowspan="2" class="HHN">Hospital Helpline No</th>
+            <th rowspan="2" class="DCRN">Dist. Control Room No.</th>
+            <th rowspan="2" class="LU">Last Updation By Hospital</th>
+          </tr>
+          <tr class="second-row">
+            <th class="GB">T</th>
+            <th class="GB">O</th>
+            <th class="GB">A</th>
+            <th class="OB">T</th>
+            <th class="OB">O</th>
+            <th class="OB">A</th>
+            <th class="ICWV">T</th>
+            <th class="ICWV">O</th>
+            <th class="ICWV">A</th>
+            <th class="ICV">T</th>
+            <th class="ICV">O</th>
+            <th class="ICV">A</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  </div>
+
+</body>
+<script type="text/javascript">
+  var district_list = {{ district_list |default('[]') | tojson }};
+  district_list = district_list.sort();
+  console.log(district_list[1]);
+   for(var i=0;i<district_list.length;i++){
+    const select = document.getElementById('cars');
+    const option = document.createElement('option');
+    const text = document.createTextNode(district_list[i]);
+    option.setAttribute('value', district_list[i]);
+    option.appendChild(text);
+    select.appendChild(option);
+   }
+   
+  var dataset = {{ dataset | default('[]') | tojson }};
+  console.log(dataset);
+  for(var i=0;i<dataset.length;i++){
+    var head = document.getElementById("mytable");
+    var row = head.insertRow(2);
+    for(var j=0;j<dataset[i].length;j++){
+      var cell1 = row.insertCell(j);
+      cell1.innerHTML = dataset[i][j];
+      console.log(dataset[i][j]);
+    }
+  }
+
+
+
+
+</script>
+</html>
