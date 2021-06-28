@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+{% block body %}
+
+  <div class="main-page">
+  <div class="bedform">
+    <form action="/pharmaTable", method="post">
+      <label for="pharma" style="margin-right: 40px;">District:</label>
+      <select name="pharma" id="pharma" style="border-radius: 5px;">
+      </select>
+      <br><br>
+      <input type="submit" value="Submit" class="submitbutton">
+    </form>
+  </div>
+  </div>
+{% endblock %}
+
+{% block script %}
+
+<script type="text/javascript">
+  var pharmalist = {{ pharmalist |default('[]') | tojson }};
+  if(pharmalist.length>1){
+    pharmalist = pharmalist.sort();
+    console.log(pharmalist[1]);
+     for(var i=0;i<pharmalist.length;i++){
+      const select = document.getElementById('pharma');
+      const option = document.createElement('option');
+      const text = document.createTextNode(pharmalist[i]);
+      option.setAttribute('value', pharmalist[i]);
+      option.appendChild(text);
+      select.appendChild(option);
+     }
+   }
+
+<!--  var dataset = {{ dataset | default('[]') | tojson }};-->
+<!--  console.log(dataset);-->
+<!--  for(var i=0;i<dataset.length;i++){-->
+<!--    var head = document.getElementById("mytable");-->
+<!--    var row = head.insertRow(2);-->
+<!--    for(var j=0;j<dataset[i].length;j++){-->
+<!--      var cell1 = row.insertCell(j);-->
+<!--      cell1.innerHTML = dataset[i][j];-->
+<!--      console.log(dataset[i][j]);-->
+<!--    }-->
+<!--  }-->
+
+</script>
+{% endblock %}

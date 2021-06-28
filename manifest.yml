@@ -1,0 +1,10 @@
+
+---
+applications:
+- name: hospital
+  memory: 0.2GB
+  disk_quota: 0.5GB
+  random-route: true
+  parameters:
+    memory: 0.2GB
+    buildpack: python_buildpack

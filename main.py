@@ -54,9 +54,6 @@ class pharma():
             return pharma.values.tolist()
         except Exception as e:
             return e
-a = pharma("kota")
-b = hospital("Jaipur")
-
 # Starting Flask work from here
 
 app = Flask(__name__)
@@ -70,24 +67,47 @@ district_list = ['Jaipur', 'Jaisalmer', 'Jalore', 'Jhalawar', 'Jhunjhunu',
                  'Hanumangarh', 'Karauli', 'Kota', 'Nagaur', 'Pali', 'Pratapgarh',
                  'Rajsamand', 'Sawai Madhopur', 'Sikar', 'Sirohi', 'Tonk',
                  'Udaipur']
-
+pharmalist = [(17, "ajmer"), (28, "alwar"), (104, "banswara"), (110, "baran"), (116, "barmer"),
+              (143, "bharatpur"), (150, "bhilwara"), (164, "bikaner"),(182, "bundi"), (224, "chittorgarh"),
+              (227, "churu"), (248, "dausa"), (338, "jaipur"),(381, "jaisalmer"), (386, "jalore"), (399, "jhalawar"),
+              (403, "jhunjhunu"), (379, "jodhpur"), (440, "karauli"), (488, "kota-rajasthan"), (600, "nagpur"),
+              (848, "pali-rajasthan"),(894, "pratapgarh"), (925, "rajsamand"), (673, "sawai-madhopur"), (692, "sikar"),
+              (699, "sirohi"),     (716, "sri-ganganagar-rajasthan"), (767, "tonk"), (771, "udaipur-rajasthan")]
 # Home page which have district list in select menu
 @app.route('/')
 def home_page():
     return render_template("index.html", district_list = district_list)
 
 # page after district has been chosed
-@app.route('/home', methods=['POST', 'GET'])
+@app.route('/hospitals', methods=['POST', 'GET'])
 def hospitalList():
     district = request.form.get("cars")
     a = hospital(district)
     dataset = a.extraction()
-    return render_template("index.html", dataset = dataset, district_list = district_list)
+    return render_template("home.html", dataset = dataset, district_list = district_list)
 
+@app.route('/pharmacies', methods=['POST', 'GET'])
+def pharmacylist():
+    lis = []
+    for i in range(len(pharmalist)):
+        lis.append(pharmalist[i][1])
+    return render_template("pharmaList.html", pharmalist = lis)
+@app.route('/pharmaTable', methods=['POST','GET'])
+def pharmaExtraction():
+    lis=[]
+    def pharmacylist():
+        lis = []
+        for i in range(len(pharmalist)):
+            lis.append(pharmalist[i][1])
 
+    selected_value = request.form.get('pharma')
+    b = pharma(selected_value)
+    b.pharmalist()
+    return render_template('pharma_Table.html', dataset = b.pharmalist(), pharmalist = lis)
 
-
-
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 
 # port = os.getenv("PORT")

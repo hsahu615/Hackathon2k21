@@ -1,0 +1,53 @@
+{% extends "index.html" %}
+{% block body %}
+
+  <div class="main-page">
+  <div class="bedform">
+    <form action="/pharmacies", method="post">
+      <label for="pharma">District:</label>
+      <select name="pharma" id="pharma">
+      </select>
+      <br><br>
+      <input type="submit" value="Submit" class="submitbutton">
+    </form>
+  </div>
+  </div>
+  <div class="data-container">
+    <table class="my-table" id="mytable">
+      <thead class="row-head">
+        <tr class="first-row">
+          <th rowspan="2" class="district">Pharmacy/Chemist/Drugstore Name</th>
+          <th rowspan="2" class="hospitalname">PINCODE</th>
+          <th colspan="3" class="GB">Phone</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+  var pharmalist = {{ pharmalist |default('[]') | tojson }};
+    pharmalist = pharmalist.sort();
+    console.log(pharmalist[1]);
+     for(var i=0;i<pharmalist.length;i++){
+      const select = document.getElementById('pharma');
+      const option = document.createElement('option');
+      const text = document.createTextNode(pharmalist[i]);
+      option.setAttribute('value', pharmalist[i]);
+      option.appendChild(text);
+      select.appendChild(option);
+     }
+  var dataset = {{ dataset | default('[]') | tojson }};
+  console.log(dataset);
+  for(var i=0;i<dataset.length;i++){
+    var head = document.getElementById("mytable");
+    var row = head.insertRow(1);
+    for(var j=0;j<dataset[i].length;j++){
+      var cell1 = row.insertCell(j);
+      cell1.innerHTML = dataset[i][j];
+    }
+  }
+
+</script>
+{% endblock %}

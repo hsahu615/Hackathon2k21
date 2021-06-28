@@ -47,8 +47,12 @@ body{
   height: 100%;
   position: relative;
   top: 40px;
+  z-index: 1;
+  margin-bottom:40px;
   border-radius: 15px;
-  background-color: rgba(255, 255, 255, 0.3);
+  /* background-color: rgba(255, 255, 255, 0.3); */
+  background-color: none;
+  
 }
 .title{
   font-size: 30px;
@@ -117,10 +121,76 @@ thead{
 div table tr td{
   font-weight: 400;
 }
-
-/* table tr:nth-child(odd) {
-  background-color: white;
+.aboutPage{
+  height: 550px;
+  left: 10%;
+  width:80%;
+  position: relative;
+  top: 40px;
+  z-index: 1;
+  margin-bottom:40px;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.3);
 }
-table tr:nth-child(odd) {
-  background-color: aqua;
-} */
+.aboutPage h1{
+  text-align: center;
+  text-decoration: underline;
+  margin-bottom:30px;
+  font-size: 35px;
+}
+.aboutPage p{
+  margin-left:20px;
+  font-size: 20px;
+}
+.card , .card2{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 400px;
+  margin-left: 80px;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: inline-block;
+  height: 250px;
+  text-align: center;
+  padding-right: 10px;
+}
+.card h2{
+  font-size: 28px;
+}
+.Cardtitle {
+  color: grey;
+  font-size: 25px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+}
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+.card, .card2{
+  line-height: 60px;
+}
+.card2{
+  position: relative;
+  top: 0px;
+  left: 200px;
+  margin-top: 100px;
+}
+.card2 a p button{
+  margin-right: 100px;
+}
