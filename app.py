@@ -11,8 +11,7 @@ class hospital():
          self.district = district
      def extraction(self):
          try:
-             df = pd.read_html("hospital.html")
-             df = df[0]
+             df = pd.read_html("https://covidinfo.rajasthan.gov.in/Covid-19hospital-wisebedposition-wholeRajasthan.aspx")[0]
              df.drop("S.No.", axis=1, level=0, inplace=True)
              a = []
              for i in df.columns:
