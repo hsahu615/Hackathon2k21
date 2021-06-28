@@ -2,6 +2,7 @@ import pandas as pd
 import requests
 from flask import Flask, redirect, render_template, url_for, request
 import json
+import os
 
 class hospital():
 
