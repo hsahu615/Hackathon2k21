@@ -53,7 +53,6 @@
   var district_list = {{ district_list |default('[]') | tojson }};
   if(district_list.length>1){
     district_list = district_list.sort();
-    console.log(district_list[1]);
      for(var i=0;i<district_list.length;i++){
       const select = document.getElementById('cars');
       const option = document.createElement('option');
@@ -72,7 +71,6 @@
     for(var j=0;j<dataset[i].length;j++){
       var cell1 = row.insertCell(j);
       cell1.innerHTML = dataset[i][j];
-      console.log(dataset[i][j]);
     }
   }
 

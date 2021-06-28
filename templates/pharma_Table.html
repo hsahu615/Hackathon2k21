@@ -29,7 +29,6 @@
 <script type="text/javascript">
   var pharmalist = {{ pharmalist |default('[]') | tojson }};
     pharmalist = pharmalist.sort();
-    console.log(pharmalist[1]);
      for(var i=0;i<pharmalist.length;i++){
       const select = document.getElementById('pharma');
       const option = document.createElement('option');
