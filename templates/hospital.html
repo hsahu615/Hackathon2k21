@@ -5,9 +5,7 @@
   <div class="bedform">
     <form action="/hospitals", method="post">
       <label for="cars">District:</label>
-      <select name="cars" id="cars">
-      </select>
-      <br><br>
+      <select name="cars" id="cars"></select>
       <input type="submit" value="Submit" class="submitbutton">
     </form>
   </div>
@@ -47,8 +45,8 @@
 </div>
   
 {% endblock %}
-{% block script %}
 
+{% block script %}
 <script type="text/javascript">
   var district_list = {{ district_list |default('[]') | tojson }};
   if(district_list.length>1){
@@ -64,7 +62,7 @@
    }
 
   var dataset = {{ dataset | default('[]') | tojson }};
-<!--  console.log(dataset);-->
+  console.log(dataset);
   for(var i=0;i<dataset.length;i++){
     var head = document.getElementById("mytable");
     var row = head.insertRow(2);
